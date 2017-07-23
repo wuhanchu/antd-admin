@@ -3,6 +3,7 @@
   "dependencies": {
     "antd": "^2.11.2",
     "classnames": "^2.2.5",
+    "client-oauth2": "^4.1.0",
     "draftjs-to-markdown": "^0.4.0",
     "dva": "^1.2.0",
     "dva-loading": "^0.2.0",

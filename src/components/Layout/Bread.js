@@ -4,14 +4,14 @@ import { Breadcrumb, Icon } from 'antd'
 import { Link } from 'dva/router'
 import styles from './Bread.less'
 import pathToRegexp from 'path-to-regexp'
-import { queryArray } from 'utils'
+import { queryArray } from '../../utils'
 
 const Bread = ({ menu }) => {
   // 匹配当前路由
   let pathArray = []
   let current
   for (let index in menu) {
-    if (menu[index].route && pathToRegexp(menu[index].route).exec(location.pathname)) {
+    if (menu[index].router && pathToRegexp(menu[index].router).exec(location.pathname)) {
       current = menu[index]
       break
     }
@@ -25,11 +25,7 @@ const Bread = ({ menu }) => {
   }
 
   if (!current) {
-    pathArray.push(menu[0] || {
-      id: 1,
-      icon: 'laptop',
-      name: 'Dashboard',
-    })
+    pathArray.push(menu[0])
     pathArray.push({
       id: 404,
       name: 'Not Found',
@@ -48,7 +44,7 @@ const Bread = ({ menu }) => {
     return (
       <Breadcrumb.Item key={key}>
         {((pathArray.length - 1) !== key)
-          ? <Link to={item.route}>
+          ? <Link to={item.router}>
               {content}
           </Link>
           : content}

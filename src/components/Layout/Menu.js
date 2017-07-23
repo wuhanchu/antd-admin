@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Icon } from 'antd'
 import { Link } from 'dva/router'
-import { arrayToTree, queryArray } from 'utils'
+import { arrayToTree, queryArray } from '../../utils'
 import pathToRegexp from 'path-to-regexp'
 
-const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOpenKeys, menu }) => {
+const Menus = ({ siderFold, darkTheme, location, handleClickNavMenu, navOpenKeys, changeOpenKeys, menu }) => {
   // 生成树状
-  const menuTree = arrayToTree(menu.filter(_ => _.mpid !== '-1'), 'id', 'mpid')
+  const menuTree = arrayToTree(menu.filter(_ => _.mpid !== -1), 'id', 'mpid')
   const levelMap = {}
 
   // 递归生成菜单
@@ -22,7 +22,7 @@ const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOp
             key={item.id}
             title={<span>
               {item.icon && <Icon type={item.icon} />}
-              {(!siderFoldN || !menuTree.includes(item)) && item.name}
+              {(!siderFoldN || menuTree.indexOf(item) < 0) && item.name}
             </span>}
           >
             {getMenus(item.children, siderFoldN)}
@@ -31,9 +31,9 @@ const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOp
       }
       return (
         <Menu.Item key={item.id}>
-          <Link to={item.route}>
+          <Link to={item.router}>
             {item.icon && <Icon type={item.icon} />}
-            {(!siderFoldN || !menuTree.includes(item)) && item.name}
+            {(!siderFoldN || menuTree.indexOf(item) < 0) && item.name}
           </Link>
         </Menu.Item>
       )
@@ -60,8 +60,8 @@ const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOp
   }
 
   const onOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => !navOpenKeys.includes(key))
-    const latestCloseKey = navOpenKeys.find(key => !openKeys.includes(key))
+    const latestOpenKey = openKeys.find(key => !(navOpenKeys.indexOf(key) > -1))
+    const latestCloseKey = navOpenKeys.find(key => !(openKeys.indexOf(key) > -1))
     let nextOpenKeys = []
     if (latestOpenKey) {
       nextOpenKeys = getAncestorKeys(latestOpenKey).concat(latestOpenKey)
@@ -82,7 +82,7 @@ const Menus = ({ siderFold, darkTheme, handleClickNavMenu, navOpenKeys, changeOp
   let currentMenu
   let defaultSelectedKeys
   for (let item of menu) {
-    if (item.route && pathToRegexp(item.route).exec(location.pathname)) {
+    if (item.router && pathToRegexp(item.router).exec(location.pathname)) {
       currentMenu = item
       break
     }
@@ -119,6 +119,7 @@ Menus.propTypes = {
   menu: PropTypes.array,
   siderFold: PropTypes.bool,
   darkTheme: PropTypes.bool,
+  location: PropTypes.object,
   isNavbar: PropTypes.bool,
   handleClickNavMenu: PropTypes.func,
   navOpenKeys: PropTypes.array,

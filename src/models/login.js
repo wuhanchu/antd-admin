@@ -1,6 +1,6 @@
-import { login } from '../services/login'
+import { login } from '../services/app'
 import { routerRedux } from 'dva/router'
-import { queryURL } from 'utils'
+import { queryURL } from '../utils'
 
 export default {
   namespace: 'login',
@@ -13,9 +13,18 @@ export default {
       payload,
     }, { put, call }) {
       yield put({ type: 'showLoginLoading' })
-      const data = yield call(login, payload)
+      const token = yield call(login, payload)
       yield put({ type: 'hideLoginLoading' })
-      if (data.success) {
+      if (token.data) {
+        sessionStorage.setItem('token', JSON.stringify(token.data))
+
+        // 设置自动刷新
+        token.expiresIn(60)
+        console.log('token',token)
+        token.refresh().then((newToken) => {
+          sessionStorage.setItem('token', JSON.stringify(newToken))
+        })
+
         const from = queryURL('from')
         yield put({ type: 'app/query' })
         if (from) {

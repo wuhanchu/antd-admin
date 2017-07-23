@@ -1,4 +1,5 @@
 import config from './config'
+import menu from './menu'
 import request from './request'
 import classnames from 'classnames'
 import { color } from './theme'
@@ -100,6 +101,7 @@ const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
 
 module.exports = {
   config,
+  menu,
   request,
   color,
   classnames,

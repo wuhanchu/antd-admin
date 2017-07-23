@@ -1,13 +1,10 @@
-import { request, config } from 'utils'
-const { api } = config
-const { user, userLogout, userLogin } = api
+import { request, config,  } from '../utils'
+const { api,oauthClient } = config
+const { user, users, userLogout } = api
+
 
 export async function login (params) {
-  return request({
-    url: userLogin,
-    method: 'post',
-    data: params,
-  })
+  return oauthClient.owner.getToken(params.username, params.password)
 }
 
 export async function logout (params) {
@@ -20,7 +17,7 @@ export async function logout (params) {
 
 export async function query (params) {
   return request({
-    url: user.replace('/:id', ''),
+    url: `${users}/me`,
     method: 'get',
     data: params,
   })

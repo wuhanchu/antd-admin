@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Button, Row, Form, Input } from 'antd'
-import { config } from 'utils'
+import { config } from '../../utils'
 import styles from './index.less'
 
 const FormItem = Form.Item
@@ -56,8 +56,8 @@ const Login = ({
             Sign in
           </Button>
           <p>
-            <span>Username：guest</span>
-            <span>Password：guest</span>
+            <span>Username：root</span>
+            <span>Password：q</span>
           </p>
         </Row>
 

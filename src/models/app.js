@@ -1,26 +1,13 @@
 import { query, logout } from '../services/app'
-import * as menusService from '../services/menus'
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
-import config from 'config'
-import { EnumRoleType } from 'enums'
+import { config } from '../utils'
 const { prefix } = config
 
 export default {
   namespace: 'app',
   state: {
     user: {},
-    permissions: {
-      visit: [],
-    },
-    menu: [
-      {
-        id: 1,
-        icon: 'laptop',
-        name: 'Dashboard',
-        router: '/dashboard',
-      },
-    ],
     menuPopoverVisible: false,
     siderFold: localStorage.getItem(`${prefix}siderFold`) === 'true',
     darkTheme: localStorage.getItem(`${prefix}darkTheme`) === 'true',
@@ -46,38 +33,19 @@ export default {
     *query ({
       payload,
     }, { call, put }) {
-      const { success, user } = yield call(query, payload)
-      if (success && user) {
-        const { list } = yield call(menusService.query)
-        const { permissions } = user
-        let menu = list
-        if (permissions.role === EnumRoleType.ADMIN || permissions.role === EnumRoleType.DEVELOPER) {
-          permissions.visit = list.map(item => item.id)
-        } else {
-          menu = list.filter(item => {
-            const cases = [
-              permissions.visit.includes(item.id),
-              item.mpid ? permissions.visit.includes(item.mpid) || item.mpid === '-1' : true,
-              item.bpid ? permissions.visit.includes(item.bpid) : true,
-            ]
-            return cases.every(_ => _)
-          })
-        }
+      const data = yield call(query, parse(payload))
+      if (data.success) {
         yield put({
-          type: 'updateState',
-          payload: {
-            user,
-            permissions,
-            menu,
-          },
+          type: 'querySuccess',
+          payload: data,
         })
-        if (location.pathname === '/login') {
+        if (location.pathname === '#login') {
           yield put(routerRedux.push('/dashboard'))
         }
       } else {
         if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
           let from = location.pathname
-          window.location = `${location.origin}/login?from=${from}`
+          window.location = `${location.origin}#login?from=${from}`
         }
       }
     },
@@ -85,12 +53,10 @@ export default {
     *logout ({
       payload,
     }, { call, put }) {
-      const data = yield call(logout, parse(payload))
-      if (data.success) {
-        yield put({ type: 'query' })
-      } else {
-        throw (data)
-      }
+      // const data = yield call(logout, parse(payload))
+      sessionStorage.removeItem('token')
+      yield put({ type: 'query' })
+
     },
 
     *changeNavbar ({
@@ -105,10 +71,10 @@ export default {
 
   },
   reducers: {
-    updateState (state, { payload }) {
+    querySuccess (state, { payload: user }) {
       return {
         ...state,
-        ...payload,
+        user,
       }
     },
 

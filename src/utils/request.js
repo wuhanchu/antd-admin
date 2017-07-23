@@ -5,6 +5,8 @@ import jsonp from 'jsonp'
 import lodash from 'lodash'
 import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
 
 const fetch = (options) => {
   let {
@@ -52,6 +54,15 @@ const fetch = (options) => {
     data = null
   }
 
+  let token = sessionStorage.getItem('token')
+  if (token) {
+    token = JSON.parse(token)
+    axios.defaults.headers.common.Authorization = `Bearer ${token.access_token}`
+  } else {
+    axios.defaults.headers.common.Authorization = null
+  }
+
+
   switch (method.toLowerCase()) {
     case 'get':
       return axios.get(url, {
@@ -62,15 +73,16 @@ const fetch = (options) => {
         data: cloneData,
       })
     case 'post':
-      return axios.post(url, cloneData)
+      return axios.post(url, qs.stringify({ ...cloneData }))
     case 'put':
-      return axios.put(url, cloneData)
+      return axios.put(url, qs.stringify({ ...cloneData }))
     case 'patch':
-      return axios.patch(url, cloneData)
+      return axios.patch(url, qs.stringify({ ...cloneData }))
     default:
       return axios(options)
   }
 }
+
 
 export default function request (options) {
   if (options.url && options.url.indexOf('//') > -1) {
@@ -89,12 +101,6 @@ export default function request (options) {
   return fetch(options).then((response) => {
     const { statusText, status } = response
     let data = options.fetchType === 'YQL' ? response.data.query.results.json : response.data
-    if (data instanceof Array) {
-      data = {
-        list: data,
-      }
-    }
-
     return {
       success: true,
       message: statusText,
@@ -116,3 +122,4 @@ export default function request (options) {
     return { success: false, statusCode, message: msg }
   })
 }
+
