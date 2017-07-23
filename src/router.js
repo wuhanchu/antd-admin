@@ -132,38 +132,6 @@ const Routers = function ({ history, app }) {
             }, 'post')
           },
         }, {
-          path: 'device',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/device'))
-              cb(null, require('./routes/device/'))
-            }, 'device')
-          },
-        }, {
-          path: 'dict',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/dict'))
-              cb(null, require('./routes/dict/'))
-            }, 'dict')
-          },
-        }, {
-          path: 'record',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/record'))
-              cb(null, require('./routes/record/'))
-            }, 'record')
-          },
-        }, {
-          path: 'statistics',
-          getComponent (nextState, cb) {
-            require.ensure([], require => {
-              registerModel(app, require('./models/record'))
-              cb(null, require('./routes/record/'))
-            }, 'statistics')
-          },
-        }, {
           path: '*',
           getComponent (nextState, cb) {
             require.ensure([], require => {
