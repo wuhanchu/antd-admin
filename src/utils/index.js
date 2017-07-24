@@ -4,6 +4,7 @@ import request from './request'
 import classnames from 'classnames'
 import { color } from './theme'
 import lodash from 'lodash'
+import {getUrlAnchor} from "./common";
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
@@ -51,7 +52,9 @@ const queryURL = (name) => {
   let r = window.location.search.substr(1).match(reg)
   if (r != null) return decodeURI(r[2])
   return null
+
 }
+
 
 /**
  * 数组内查询
@@ -99,6 +102,7 @@ const arrayToTree = (array, id = 'id', pid = 'pid', children = 'children') => {
   return result
 }
 
+
 module.exports = {
   config,
   menu,
@@ -108,4 +112,5 @@ module.exports = {
   queryURL,
   queryArray,
   arrayToTree,
+  getUrlAnchor,
 }

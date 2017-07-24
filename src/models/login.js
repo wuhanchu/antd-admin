@@ -9,22 +9,16 @@ export default {
   },
 
   effects: {
-    *login ({
+    * login ({
       payload,
     }, { put, call }) {
       yield put({ type: 'showLoginLoading' })
       const token = yield call(login, payload)
       yield put({ type: 'hideLoginLoading' })
       if (token.data) {
+        token.data.expires = token.expires.getTime();
         sessionStorage.setItem('token', JSON.stringify(token.data))
-
-        // 设置自动刷新
-        token.expiresIn(60)
         console.log('token',token)
-        token.refresh().then((newToken) => {
-          sessionStorage.setItem('token', JSON.stringify(newToken))
-        })
-
         const from = queryURL('from')
         yield put({ type: 'app/query' })
         if (from) {
@@ -33,7 +27,7 @@ export default {
           yield put(routerRedux.push('/dashboard'))
         }
       } else {
-        throw data
+        throw token
       }
     },
   },

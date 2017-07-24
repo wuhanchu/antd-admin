@@ -2,6 +2,8 @@ import { query, logout } from '../services/app'
 import { routerRedux } from 'dva/router'
 import { parse } from 'qs'
 import { config } from '../utils'
+import { getUrlAnchor } from '../utils/index'
+
 const { prefix } = config
 
 export default {
@@ -30,7 +32,7 @@ export default {
   },
   effects: {
 
-    *query ({
+    * query ({
       payload,
     }, { call, put }) {
       const data = yield call(query, parse(payload))
@@ -42,27 +44,25 @@ export default {
         if (location.pathname === '#login') {
           yield put(routerRedux.push('/dashboard'))
         }
-      } else {
-        if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
-          let from = location.pathname
-          window.location = `${location.origin}#login?from=${from}`
-        }
+      } else if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
+        let from = getUrlAnchor(location.href)
+        window.location.href = `${location.origin}#login?from=${from}`
       }
     },
 
-    *logout ({
+    * logout ({
       payload,
     }, { call, put }) {
       // const data = yield call(logout, parse(payload))
       sessionStorage.removeItem('token')
-      yield put({ type: 'query' })
-
+      let from = getUrlAnchor(location.href)
+      window.location.href = `${location.origin}#login?from=${from}`
     },
 
-    *changeNavbar ({
+    * changeNavbar ({
       payload,
     }, { put, select }) {
-      const { app } = yield(select(_ => _))
+      const { app } = yield (select(_ => _))
       const isNavbar = document.body.clientWidth < 769
       if (isNavbar !== app.isNavbar) {
         yield put({ type: 'handleNavbar', payload: isNavbar })
