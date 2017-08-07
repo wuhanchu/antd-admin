@@ -30,14 +30,14 @@ function Comments ({ data }) {
     }, {
       title: 'content',
       dataIndex: 'content',
-      render: (text, it) => <div>
+      render: (text, it) => (<div>
         <h5 className={styles.name}>{it.name}</h5>
         <p className={styles.content}>{it.content}</p>
         <div className={styles.daterow}>
           <Tag color={status[it.status].color}>{status[it.status].text}</Tag>
           <span className={styles.date}>{it.date}</span>
         </div>
-      </div>,
+      </div>),
     },
   ]
   return (

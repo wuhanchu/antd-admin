@@ -1,5 +1,5 @@
-import { myCity, queryWeather, query } from '../services/dashboard'
 import { parse } from 'qs'
+import { myCity, queryWeather, query } from '../services/dashboard'
 
 // zuimei 摘自 http://www.zuimeitianqi.com/res/js/index.js
 let zuimei = {
@@ -34,12 +34,10 @@ let zuimei = {
           num = `${num}_${flg}.png`
         }
       }
+    } else if ((hour >= 18 && hour <= 23) || (hour >= 0 && hour <= 6)) {
+      num = `${num}_${flg}_night.png`
     } else {
-      if ((hour >= 18 && hour <= 23) || (hour >= 0 && hour <= 6)) {
-        num = `${num}_${flg}_night.png`
-      } else {
-        num = `${num}_${flg}.png`
-      }
+      num = `${num}_${flg}.png`
     }
 
     return num
@@ -195,22 +193,29 @@ export default {
     },
   },
   effects: {
-    *query ({
+    * query ({
       payload,
     }, { call, put }) {
       const data = yield call(query, parse(payload))
       yield put({ type: 'queryWeather', payload: { ...data }})
     },
-    *queryWeather ({
-      payload,
-    }, { call, put }) {
+    * queryWeather (action, { call, put }) {
       const myCityResult = yield call(myCity, { flg: 0 })
       const result = yield call(queryWeather, { cityCode: myCityResult.selectCityCode })
+<<<<<<< HEAD
       // const weather = zuimei.parseActualData(result.data.actual)
       // weather.city = myCi  tyResult.selectCityName
       // yield put({ type: 'queryWeatherSuccess', payload: {
       //   weather,
       // } })
+=======
+      const weather = zuimei.parseActualData(result.data.actual)
+      weather.city = myCityResult.selectCityName
+      yield put({ type: 'queryWeatherSuccess',
+        payload: {
+          weather,
+        } })
+>>>>>>> 6ae39bfd55e182f5d0b37a9192dfa1756787d5f4
     },
   },
   reducers: {
