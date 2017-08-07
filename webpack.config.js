@@ -38,7 +38,7 @@ module.exports = (webpackConfig, env) => {
     new HtmlWebpackPlugin({
       hash: true,
       mobile: true,
-      title: 'antd-admin',
+      title: 'device-sale-web',
       inject: false,
       appMountId: 'root',
       template: `!!ejs-loader!${HtmlWebpackTemplate}`,
