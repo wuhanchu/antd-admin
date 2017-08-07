@@ -13,7 +13,6 @@ export default {
   entry : 'src/index.js',
   svgSpriteLoaderDirs : svgSpriteDirs,
   theme : "./theme.config.js",
-  outputPath : `./dist/`,
   "proxy": {
     "/api/v1/": {
       "target": apiUrl,

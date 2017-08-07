@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "qingqing-device-sale-web",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "dependencies": {
     "antd": "^2.12.4",
     "axios": "^0.16.2",
@@ -49,7 +49,7 @@
     "html-webpack-plugin": "^2.29.0",
     "html-webpack-template": "^5.6.0",
     "redbox-react": "^1.2.10",
-    "roadhog": "1.0.0"
+    "roadhog": "^1.0.1"
   },
   "pre-commit": [
     "lint"
