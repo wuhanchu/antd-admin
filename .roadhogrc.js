@@ -14,7 +14,7 @@ export default {
   svgSpriteLoaderDirs : svgSpriteDirs,
   theme : "./theme.config.js",
   publicPath : `/${version}/`,
-  outputPath : `./dist/${version}`,
+  outputPath : `./dist/`,
   "proxy": {
     "/api/v1/users": {
       "target": apiUrl,
