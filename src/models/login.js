@@ -16,9 +16,10 @@ export default {
       const token = yield call(login, payload)
       yield put({ type: 'hideLoginLoading' })
       if (token.data) {
-        token.data.expires = token.expires.getTime();
+        token.data.expires = token.expires.getTime()
         sessionStorage.setItem('token', JSON.stringify(token.data))
-        console.log('token',token)
+        sessionStorage.setItem('company', payload.company)
+;
         const from = queryURL('from')
         yield put({ type: 'app/query' })
         if (from) {

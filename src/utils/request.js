@@ -21,7 +21,7 @@ const fetch = (options) => {
     url,
   } = options
 
-  const cloneData = lodash.cloneDeep(data)
+  let  cloneData = lodash.cloneDeep(data)
 
   try {
     let domin = ''
@@ -84,6 +84,7 @@ const fetch = (options) => {
 
       // 设置报头
       axios.defaults.headers.common.Authorization = `Bearer ${token.access_token}`
+      cloneData.company = sessionStorage.getItem('company')
 
       switch (method.toLowerCase()) {
         case 'get':

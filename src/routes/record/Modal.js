@@ -122,7 +122,7 @@ const modal = ({
 
     devicesMap[node.code].handle = true
     return (<TreeNode value={node.code} title={`${node.accountant_name}(${node.code})`}
-      key={`${node.accountant_name}(${node.code})`}
+                      key={`${node.accountant_name}(${node.code})`}
     >{result}</TreeNode>)
   }
 
@@ -165,12 +165,12 @@ const modal = ({
               {getFieldDecorator('code', {
                 initialValue: item.code,
               })(<TreeSelect
-                showSearch
-                dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                placeholder=""
-                allowClear
-                treeDefaultExpandAll
-              >{treeNodes}</TreeSelect>
+                  showSearch
+                  dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                  placeholder=""
+                  allowClear
+                  treeDefaultExpandAll
+                >{treeNodes}</TreeSelect>
               )
               }
             </FormItem>
@@ -282,7 +282,7 @@ const modal = ({
                   {dictOptions['供应商名称']}
                 </Select>)}
               </FormItem>
-            </TabPane> : null}
+            </TabPane> : ''}
           {item.type === '本期销售' ?
             <TabPane tab="销售" key="3">
               <FormItem label="销售日期" hasFeedback {...formItemLayout}>
@@ -327,7 +327,7 @@ const modal = ({
                   {dictOptions['客户名称']}
                 </Select>)}
               </FormItem>
-            </TabPane> : null}
+            </TabPane> : ''}
         </Tabs>
       </Form>
     </Modal>

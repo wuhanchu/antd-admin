@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Button, Row, Form, Input } from 'antd'
+import { Button, Row, Form, Input, Select } from 'antd'
 import { config } from '../../utils'
 import styles from './index.less'
 
 const FormItem = Form.Item
+const Option = Select.Option
 
 const Login = ({
   login,
@@ -50,6 +51,23 @@ const Login = ({
               },
             ],
           })(<Input size="large" type="password" onPressEnter={handleOk} placeholder="密码" />)}
+        </FormItem>
+        <FormItem hasFeedback>
+          {getFieldDecorator('company', {
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          })(<Select
+            size="large"
+            placeholder="公司"
+            allowClear = {true}
+          >
+            <Option value="测试公司">测试公司</Option>
+            <Option value="测试公司1">测试公司1</Option>
+
+          </Select>)}
         </FormItem>
         <Row>
           <Button type="primary" size="large" onClick={handleOk} loading={loginLoading}>
