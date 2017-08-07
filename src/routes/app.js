@@ -1,6 +1,5 @@
 /* global window */
 import React from 'react'
-import NProgress from 'nprogress'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Layout } from '../components'
@@ -8,14 +7,9 @@ import { classnames, config, menu } from '../utils'
 import { Helmet } from 'react-helmet'
 import '../themes/index.less'
 import './app.less'
-<<<<<<< HEAD
 import NProgress from 'nprogress'
-const { prefix } = config
-=======
-import Error from './error'
 
 const { prefix, openPages } = config
->>>>>>> 6ae39bfd55e182f5d0b37a9192dfa1756787d5f4
 
 const { Header, Bread, Footer, Sider, styles } = Layout
 let lastHref

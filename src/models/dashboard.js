@@ -202,20 +202,11 @@ export default {
     * queryWeather (action, { call, put }) {
       const myCityResult = yield call(myCity, { flg: 0 })
       const result = yield call(queryWeather, { cityCode: myCityResult.selectCityCode })
-<<<<<<< HEAD
       // const weather = zuimei.parseActualData(result.data.actual)
       // weather.city = myCi  tyResult.selectCityName
       // yield put({ type: 'queryWeatherSuccess', payload: {
       //   weather,
       // } })
-=======
-      const weather = zuimei.parseActualData(result.data.actual)
-      weather.city = myCityResult.selectCityName
-      yield put({ type: 'queryWeatherSuccess',
-        payload: {
-          weather,
-        } })
->>>>>>> 6ae39bfd55e182f5d0b37a9192dfa1756787d5f4
     },
   },
   reducers: {

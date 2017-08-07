@@ -1,6 +1,5 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
-import { config } from 'utils'
 import { create, remove, update } from '../services/user'
 import * as usersService from '../services/users'
 import { pageModel } from './common'

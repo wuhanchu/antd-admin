@@ -4,7 +4,6 @@ import styles from './cpu.less'
 import { color } from '../../../utils'
 import CountUp from 'react-countup'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts'
-import styles from './cpu.less'
 
 const countUpProps = {
   start: 0,

@@ -1,11 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'dva'
-import { Row, Col, Card } from 'antd'
-import { color } from 'utils'
-import { NumberCard, Quote, Sales, Weather, RecentSales, Comments, Completed, Browser, Cpu, User } from './components'
-import styles from './index.less'
-import { color } from '../../utils'
+import React from "react";
+import PropTypes from "prop-types";
+import {connect} from "dva";
+import {Row, Col, Card} from "antd";
+import {NumberCard, Quote, Sales, Weather, RecentSales, Comments, Completed, Browser, Cpu, User} from "./components";
+import styles from "./index.less";
+import {color} from "../../utils";
 
 
 const bodyStyle = {
@@ -71,8 +70,7 @@ function Dashboard ({ dashboard }) {
           <Comments data={comments} />
         </Card>
       </Col>
-<<<<<<< HEAD
-=======
+
       <Col lg={24} md={24}>
         <Card bordered={false}
           bodyStyle={{
@@ -97,7 +95,6 @@ function Dashboard ({ dashboard }) {
           <User {...user} />
         </Card>
       </Col>
->>>>>>> 6ae39bfd55e182f5d0b37a9192dfa1756787d5f4
     </Row>
   )
 }

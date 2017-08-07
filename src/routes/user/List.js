@@ -5,7 +5,6 @@ import classnames from 'classnames'
 import AnimTableBody from '../../components/DataTable/AnimTableBody'
 import { DropOption } from '../../components'
 import { Link } from 'dva/router'
-import AnimTableBody from '../../components/DataTable/AnimTableBody'
 import styles from './List.less'
 
 const confirm = Modal.confirm
