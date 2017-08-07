@@ -4,9 +4,9 @@ const APIV2 = '/api/v2'
 const ClientOAuth2 = require('client-oauth2')
 
 module.exports = {
-  name: 'AntD Admin',
+  name: '设备技术管理平台',
   prefix: 'antdAdmin',
-  footerText: 'Ant Design Admin  © 2017 zuiidea',
+  footerText: '轻轻信息技术有限公司  © 2017 wuhanchu',
   logo: '/logo.png',
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',
@@ -36,7 +36,7 @@ module.exports = {
     authorizationUri: 'auth/oauth2/token?grant_type=refresh_token',
 
     // todo edit scope
-    scopes: 'users:read users:write auth:read auth:write',
+    scopes: 'users:read users:write auth:read auth:write devices:read devices:write',
   }),
 }
 

@@ -16,127 +16,62 @@ const Routers = function ({ history, app }) {
       component: App,
       getIndexRoute (nextState, cb) {
         require.ensure([], require => {
-          registerModel(app, require('./models/app'))
-          cb(null, require('./routes/dashboard/'))
-        }, 'app')
-      },
-      childRoutes: [
+          registerModel(app, require('./models/dashboard'))
+          cb(null, { component: require('./routes/dashboard/') })
+        }, 'dashboard')
+      }, childRoutes: [
         {
           path: 'dashboard',
           getComponent (nextState, cb) {
-            require.ensure([], (require) => {
+            require.ensure([], require => {
               registerModel(app, require('./models/dashboard'))
               cb(null, require('./routes/dashboard/'))
             }, 'dashboard')
           },
         }, {
-          path: 'user',
-          getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              registerModel(app, require('./models/user'))
-              cb(null, require('./routes/user/'))
-            }, 'user')
-          },
-        }, {
-          path: 'user/:id',
-          getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              registerModel(app, require('./models/user/detail'))
-              cb(null, require('./routes/user/detail/'))
-            }, 'user-detail')
-          },
-        }, {
           path: 'login',
           getComponent (nextState, cb) {
-            require.ensure([], (require) => {
+            require.ensure([], require => {
               registerModel(app, require('./models/login'))
               cb(null, require('./routes/login/'))
             }, 'login')
           },
         }, {
-          path: 'request',
+          path: 'device',
           getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('./routes/request/'))
-            }, 'request')
-          },
-        },
-        //  {
-        //   path: 'UIElement/iconfont',
-        //   getComponent (nextState, cb) {
-        //     require.ensure([], (require) => {
-        //       cb(null, require('./routes/UIElement/iconfont/'))
-        //     }, 'UIElement-iconfont')
-        //   },
-        // }, {
-        //   path: 'UIElement/search',
-        //   getComponent (nextState, cb) {
-        //     require.ensure([], (require) => {
-        //       cb(null, require('./routes/UIElement/search/'))
-        //     }, 'UIElement-search')
-        //   },
-        // }, {
-        //   path: 'UIElement/dropOption',
-        //   getComponent (nextState, cb) {
-        //     require.ensure([], (require) => {
-        //       cb(null, require('./routes/UIElement/dropOption/'))
-        //     }, 'UIElement-dropOption')
-        //   },
-        // }, {
-        //   path: 'UIElement/layer',
-        //   getComponent (nextState, cb) {
-        //     require.ensure([], (require) => {
-        //       cb(null, require('./routes/UIElement/layer/'))
-        //     }, 'UIElement-layer')
-        //   },
-        // }, {
-        //   path: 'UIElement/dataTable',
-        //   getComponent (nextState, cb) {
-        //     require.ensure([], (require) => {
-        //       cb(null, require('./routes/UIElement/dataTable/'))
-        //     }, 'UIElement-dataTable')
-        //   },
-        // }, {
-        //   path: 'UIElement/editor',
-        //   getComponent (nextState, cb) {
-        //     require.ensure([], (require) => {
-        //       cb(null, require('./routes/UIElement/editor/'))
-        //     }, 'UIElement-editor')
-        //   },
-        // },
-        {
-          path: 'chart/lineChart',
-          getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('./routes/chart/lineChart/'))
-            }, 'chart-lineChart')
+            require.ensure([], require => {
+              registerModel(app, require('./models/device'))
+              cb(null, require('./routes/device/'))
+            }, 'device')
           },
         }, {
-          path: 'chart/barChart',
+          path: 'dict',
           getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('./routes/chart/barChart/'))
-            }, 'chart-barChart')
+            require.ensure([], require => {
+              registerModel(app, require('./models/dict'))
+              cb(null, require('./routes/dict/'))
+            }, 'dict')
           },
         }, {
-          path: 'chart/areaChart',
+          path: 'record',
           getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              cb(null, require('./routes/chart/areaChart/'))
-            }, 'chart-areaChart')
+            require.ensure([], require => {
+              registerModel(app, require('./models/record'))
+              cb(null, require('./routes/record/'))
+            }, 'record')
           },
         }, {
-          path: 'post',
+          path: 'statistics',
           getComponent (nextState, cb) {
-            require.ensure([], (require) => {
-              registerModel(app, require('./models/post'))
-              cb(null, require('./routes/post/'))
-            }, 'post')
+            require.ensure([], require => {
+              registerModel(app, require('./models/statistics'))
+              cb(null, require('./routes/statistics/'))
+            }, 'statistics')
           },
         }, {
           path: '*',
           getComponent (nextState, cb) {
-            require.ensure([], (require) => {
+            require.ensure([], require => {
               cb(null, require('./routes/error/'))
             }, 'error')
           },

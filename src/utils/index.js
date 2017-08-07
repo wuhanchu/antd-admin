@@ -1,11 +1,11 @@
 /* global window */
-import classnames from 'classnames'
-import lodash from 'lodash'
 import config from './config'
 import menu from './menu'
 import request from './request'
+import classnames from 'classnames'
 import { color } from './theme'
-import {getUrlAnchor} from "./common";
+import lodash from 'lodash'
+import {getUrlAnchor} from "./common"
 
 // 连字符转驼峰
 String.prototype.hyphenToHump = function () {
