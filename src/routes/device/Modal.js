@@ -68,21 +68,11 @@ const modal = ({
         <FormItem label="发票产品名称" hasFeedback {...formItemLayout}>
           {getFieldDecorator('bill_name', {
             initialValue: item.bill_name,
-            rules: [
-              {
-                required: true,
-              },
-            ],
           })(<Input />)}
         </FormItem>
         <FormItem label="规格型号" hasFeedback {...formItemLayout}>
           {getFieldDecorator('description', {
             initialValue: item.description,
-            rules: [
-              {
-                required: true,
-              },
-            ],
           })(
 
             <Input />
@@ -91,11 +81,6 @@ const modal = ({
         <FormItem label="单位" hasFeedback {...formItemLayout}>
           {getFieldDecorator('unit', {
             initialValue: item.unit,
-            rules: [
-              {
-                required: true,
-              },
-            ],
           })(<Input />)}
         </FormItem>
       </Form>

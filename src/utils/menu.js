@@ -2,7 +2,8 @@ module.exports = [
 
   {
     id: 10,
-    name: '库存',
+
+    name: '记录',
     icon: 'setting',
     router: '/record',
 

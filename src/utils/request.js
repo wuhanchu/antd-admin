@@ -84,7 +84,10 @@ const fetch = (options) => {
 
       // 设置报头
       axios.defaults.headers.common.Authorization = `Bearer ${token.access_token}`
-      cloneData.company = sessionStorage.getItem('company')
+      if(cloneData){
+        console.log('cloneData',cloneData)
+        cloneData.company = sessionStorage.getItem('company')
+      }
 
       switch (method.toLowerCase()) {
         case 'get':

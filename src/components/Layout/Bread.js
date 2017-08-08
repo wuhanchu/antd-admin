@@ -6,13 +6,14 @@ import { Link } from 'dva/router'
 import pathToRegexp from 'path-to-regexp'
 import { queryArray } from '../../utils'
 import styles from './Bread.less'
+import {getUrlAnchor} from "../../utils/common";
 
 const Bread = ({ menu }) => {
   // 匹配当前路由
   let pathArray = []
   let current
   for (let index in menu) {
-    if (menu[index].router && pathToRegexp(menu[index].router).exec(location.pathname)) {
+    if (menu[index].router && pathToRegexp(menu[index].router).exec(getUrlAnchor(location.href))) {
       current = menu[index]
       break
     }
