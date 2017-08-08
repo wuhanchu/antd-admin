@@ -45,7 +45,7 @@ export default {
         let from = queryURL('from')
 
         if (!from) {
-          from = '/dashboard'
+          from = '/record'
         }
         yield put(routerRedux.push(from))
 
