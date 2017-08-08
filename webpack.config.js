@@ -42,7 +42,7 @@ module.exports = (webpackConfig, env) => {
       inject: false,
       appMountId: 'root',
       template: `!!ejs-loader!${HtmlWebpackTemplate}`,
-      filename: env === 'production' ? 'index.html' : 'index.html',
+      filename: env === 'production' ? '../index.html' : 'index.html',
       minify: {
         collapseWhitespace: true,
       },

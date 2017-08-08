@@ -9738,9 +9738,11 @@ body {
 }
 .ant-table .ant-table-thead > tr > th {
   text-align: center;
+  border-color: rgba(94, 110, 136, 0.11);
 }
 .ant-table .ant-table-tbody > tr > td {
   text-align: center;
+  border-color: rgba(94, 110, 136, 0.11);
 }
 .ant-table.ant-table-small .ant-table-thead > tr > th {
   background: #f7f7f7;
@@ -9822,90 +9824,6 @@ a:focus {
   }
   .ant-card .ant-card-body {
     padding: 12px;
-  }
-}
-/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-/* stylelint-disable declaration-bang-space-before */
-/* stylelint-disable declaration-bang-space-before */
-.text-overflow___NeIDI {
-  white-space: nowrap;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-  overflow: hidden;
-}
-#nprogress {
-  pointer-events: none;
-}
-#nprogress .bar {
-  background: #108ee9;
-  position: fixed;
-  z-index: 1024;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 2px;
-}
-#nprogress .peg {
-  display: block;
-  position: absolute;
-  right: 0;
-  width: 100px;
-  height: 100%;
-  -webkit-box-shadow: 0 0 10px #108ee9, 0 0 5px #108ee9;
-          box-shadow: 0 0 10px #108ee9, 0 0 5px #108ee9;
-  opacity: 1.0;
-  -webkit-transform: rotate(3deg) translate(0px, -4px);
-      -ms-transform: rotate(3deg) translate(0px, -4px);
-          transform: rotate(3deg) translate(0px, -4px);
-}
-#nprogress .spinner {
-  display: block;
-  position: fixed;
-  z-index: 1031;
-  top: 15px;
-  right: 15px;
-}
-#nprogress .spinner-icon {
-  width: 18px;
-  height: 18px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: solid 2px transparent;
-  border-top-color: #108ee9;
-  border-left-color: #108ee9;
-  border-radius: 50%;
-}
-#nprogress .spinner-icon {
-  -webkit-animation: nprogress-spinner___3Nppb 400ms linear infinite;
-          animation: nprogress-spinner___3Nppb 400ms linear infinite;
-}
-.nprogress-custom-parent {
-  overflow: hidden;
-  position: relative;
-}
-.nprogress-custom-parent #nprogress .bar,
-.nprogress-custom-parent #nprogress .spinner {
-  position: absolute;
-}
-@-webkit-keyframes nprogress-spinner___3Nppb {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-@keyframes nprogress-spinner___3Nppb {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
   }
 }
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
