@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
 import { DropOption } from '../../components'
-
 const confirm = Modal.confirm
+import styles from './List.less'
 
 const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) => {
   const handleMenuClick = (record, e) => {
@@ -22,6 +22,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
   const columns = [
     {
       title: '会计产品编码',
+      className: styles.th,
       dataIndex: 'code',
       key: 'code',
     }, {
@@ -137,8 +138,9 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
   return (
     <div>
       <Table
+        className={styles.table}
         {...tableProps}
-        bordered
+        bordered = {true}
         scroll={{ x: '130%' }}
         size="middle"
         columns={columns}

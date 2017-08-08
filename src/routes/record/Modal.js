@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Input, Modal, Tabs, Select, DatePicker, InputNumber, TreeSelect } from 'antd'
+
 const TabPane = Tabs.TabPane
 const { TextArea } = Input
 import moment from 'moment'
@@ -64,7 +65,7 @@ const modal = ({
         data.in_auth_date = data.in_auth_date.format('YYYY-MM-DD')
       }
 
-      if (item.sale_date) {
+      if (data.sale_date) {
         data.sale_date = data.sale_date.format('YYYY-MM-DD')
       }
 
@@ -83,6 +84,18 @@ const modal = ({
   }
   const monthFormat = 'YYYY年MM月'
   const dateFormat = 'YYYY年MM月DD日'
+
+  if (item.in_date) {
+    item.in_date = moment(item.in_date)
+  }
+
+  if (item.in_auth_date) {
+    item.in_auth_date = moment(item.in_auth_date)
+  }
+
+  if (item.sale_date) {
+    item.sale_date = moment(item.sale_date)
+  }
 
   // 创建词典下拉框
   let dictOptions = {
@@ -121,8 +134,9 @@ const modal = ({
     })
 
     devicesMap[node.code].handle = true
-    return (<TreeNode value={node.code} title={`${node.accountant_name}(${node.code})`}
-                      key={`${node.accountant_name}(${node.code})`}
+    return (<TreeNode value={node.code}
+      title={`${node.accountant_name}(${node.code})`}
+      key={`${node.accountant_name}(${node.code})`}
     >{result}</TreeNode>)
   }
 
@@ -154,7 +168,8 @@ const modal = ({
               {getFieldDecorator('type', {
                 initialValue: item.type,
                 rules: [
-                  {},
+                  { required: true,
+                  },
                 ],
               })(<Select >
                 <Select.Option value={'本期销售'}>{'本期销售'}</Select.Option>
@@ -164,13 +179,16 @@ const modal = ({
             <FormItem label="编码" hasFeedback {...formItemLayout}>
               {getFieldDecorator('code', {
                 initialValue: item.code,
+                rules: [
+                  { required: true,
+                  }],
               })(<TreeSelect
-                  showSearch
-                  dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                  placeholder=""
-                  allowClear
-                  treeDefaultExpandAll
-                >{treeNodes}</TreeSelect>
+                showSearch
+                dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                placeholder=""
+                allowClear
+                treeDefaultExpandAll
+              >{treeNodes}</TreeSelect>
               )
               }
             </FormItem>
@@ -225,6 +243,7 @@ const modal = ({
                   rules: [
                     {
                       type: 'object',
+                      required: true,
 
                     },
                   ],
@@ -237,7 +256,7 @@ const modal = ({
                   rules: [
                     {
                       type: 'integer',
-
+                      required: true,
                     },
                   ],
                 })(
@@ -248,7 +267,9 @@ const modal = ({
                 {getFieldDecorator('in_unit_fee', {
                   initialValue: item.in_unit_fee,
                   rules: [
-                    {},
+                    {
+                      required: true,
+                    },
                   ],
                 })(<Input />)}
               </FormItem>
@@ -256,7 +277,9 @@ const modal = ({
                 {getFieldDecorator('in_fee', {
                   initialValue: item.in_fee,
                   rules: [
-                    {},
+                    {
+                      required: true,
+                    },
                   ],
                 })(
                   <Input />
@@ -291,6 +314,7 @@ const modal = ({
                   rules: [
                     {
                       type: 'object',
+                      required: true,
                     },
                   ],
                 })(<DatePicker format={dateFormat} style={{ width: '100%' }} />
@@ -302,6 +326,7 @@ const modal = ({
                   rules: [
                     {
                       type: 'integer',
+                      required: true,
 
                     },
                   ],

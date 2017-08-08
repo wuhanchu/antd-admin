@@ -21,6 +21,7 @@ const TwoColProps = {
 }
 
 const monthFormat = 'YYYY/MM';
+const dayFormat = 'YYYY/MM/DD';
 
 
 const Filter = ({
@@ -120,7 +121,7 @@ const Filter = ({
       <Col {...ColProps} span={8}>
         <FilterItem label="业务日期">
           {getFieldDecorator('business_date', { initialValue: business_date })(
-            <RangePicker style={{ width: '100%' }} size="large" format={monthFormat} />
+            <RangePicker style={{ width: '100%' }} size="large" format={dayFormat} />
           )}
         </FilterItem>
       </Col>
