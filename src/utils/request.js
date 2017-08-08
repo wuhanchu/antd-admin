@@ -1,7 +1,7 @@
 /* global window */
 import axios from 'axios'
 import qs from 'qs'
-import { YQL, CORS } from './config'
+import {YQL, CORS} from './config'
 import jsonp from 'jsonp'
 import lodash from 'lodash'
 import pathToRegexp from 'path-to-regexp'
@@ -76,7 +76,7 @@ const fetch = (options) => {
       }
     }).catch((e) => {
       let from = getUrlAnchor(location.href)
-      window.location.href = `${location.origin}#login?from=${from}`
+      window.location.href = `${location.origin}${location.pathname}#login?from=${from}`
     }).then((token) => {
 
       // 设置
@@ -106,7 +106,7 @@ const fetch = (options) => {
     });
   } else {
     let from = getUrlAnchor(location.href)
-    window.location.href = `${location.origin}#login?from=${from}`
+    window.location.href = `${location.origin}${location.pathname}#login?from=${from}`
     axios.defaults.headers.common.Authorization = null
 
     return  new Promise((resolve,reject) =>{
