@@ -1,8 +1,8 @@
-import { query, logout } from '../services/app'
-import { routerRedux } from 'dva/router'
-import { parse } from 'qs'
-import { config } from '../utils'
-import { getUrlAnchor } from '../utils/index'
+import {query, logout} from '../services/app'
+import {routerRedux} from 'dva/router'
+import {parse} from 'qs'
+import {config} from '../utils'
+import {getUrlAnchor, queryURL} from '../utils/index'
 
 const { prefix } = config
 
@@ -12,7 +12,7 @@ export default {
     user: {},
     menuPopoverVisible: false,
     siderFold: localStorage.getItem(`${prefix}siderFold`) === 'true',
-    darkTheme: localStorage.getItem(`${prefix}darkTheme`) === 'true',
+    darkTheme: localStorage.getItem(`${prefix}darkTheme`) === null || localStorage.getItem(`${prefix}darkTheme`) === 'true',
     isNavbar: document.body.clientWidth < 769,
     navOpenKeys: JSON.parse(localStorage.getItem(`${prefix}navOpenKeys`)) || [],
   },
@@ -41,12 +41,18 @@ export default {
           type: 'querySuccess',
           payload: data,
         })
-        if (location.pathname === '#login') {
-          yield put(routerRedux.push('/dashboard'))
+
+        let from = queryURL('from')
+
+        if (!from) {
+          from = '/dashboard'
         }
+        yield put(routerRedux.push(from))
+
       } else if (config.openPages && config.openPages.indexOf(location.pathname) < 0) {
         let from = getUrlAnchor(location.href)
-        window.location.href = `${location.origin}#login?from=${from}`
+        from = (from != '/login' && from != 'login' ? `?from=${from}` : '')
+        window.location.href = `${location.origin}${location.pathname}#/login${from}`
       }
     },
 

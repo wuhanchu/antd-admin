@@ -5,7 +5,7 @@ const { user, users, userLogout } = api
 
 
 export async function login (params) {
-  return oauthClient.owner.getToken(params.username, params.password)
+  return oauthClient.owner.getToken(params.username, params.password).catch((e)=>{return e})
 }
 
 export async function logout (params) {
