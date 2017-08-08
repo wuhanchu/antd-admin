@@ -55,6 +55,10 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
         title: '购进时间',
         dataIndex: 'in_date',
         key: 'in_date',
+      },{
+        title: '入库时间',
+        dataIndex: 'in_real_date',
+        key: 'in_real_date',
       }, {
         title: '数量',
         dataIndex: 'in_amount',
@@ -68,13 +72,41 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
         dataIndex: 'in_fee',
         key: 'in_fee',
       }, {
-        title: '认证期',
+        title: '税率',
+        dataIndex: 'in_tax_fee',
+        key: 'in_tax_fee',
+      }, {
+        title: '税额',
+        dataIndex: 'in_tax_amount',
+        key: 'in_tax_amount',
+      }, {
+        title: '价税合计',
+        dataIndex: 'in_price_tax',
+        key: 'in_price_tax',
+      }, {
+        title: '发票日期',
+        dataIndex: 'in_tax_date',
+        key: 'in_tax_date',
+      }, {
+        title: '发票号码',
+        dataIndex: 'in_tax_no',
+        key: 'in_tax_no',
+      }, {
+        title: '认证日期',
         dataIndex: 'in_auth_date',
         key: 'in_auth_date',
+      }, {
+        title: '客户名称',
+        dataIndex: 'in_client',
+        key: 'in_client',
       }, {
         title: '供应商名称',
         dataIndex: 'in_provider',
         key: 'in_provider',
+      }, {
+        title: '购进备注',
+        dataIndex: 'in_remark',
+        key: 'in_remark',
       }],
     }, {
       title: '销售',
@@ -82,6 +114,10 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
         title: '销售日期',
         dataIndex: 'sale_date',
         key: 'sale_date',
+      },{
+        title: '出库时间',
+        dataIndex: 'sale_real_date',
+        key: 'sale_real_date',
       }, {
         title: '数量',
         dataIndex: 'sale_amount',
@@ -95,6 +131,26 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
         dataIndex: 'sale_fee',
         key: 'sale_fee',
       }, {
+        title: '税率',
+        dataIndex: 'sale_tax_fee',
+        key: 'sale_tax_fee',
+      }, {
+        title: '税额',
+        dataIndex: 'sale_tax_amount',
+        key: 'sale_tax_amount',
+      }, {
+        title: '价税合计',
+        dataIndex: 'sale_price_tax',
+        key: 'sale_price_tax',
+      }, {
+        title: '发票日期',
+        dataIndex: 'sale_tax_date',
+        key: 'sale_tax_date',
+      }, {
+        title: '发票号码',
+        dataIndex: 'sale_tax_no',
+        key: 'sale_tax_no',
+      }, {
         title: '出库人',
         dataIndex: 'sale_people',
         key: 'sale_people',
@@ -102,6 +158,10 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
         title: '客户名称',
         dataIndex: 'sale_client',
         key: 'sale_client',
+      }, {
+        title: '销售备注',
+        dataIndex: 'sale_remark',
+        key: 'sale_remark',
       }],
     }, {
       title: '结存',
@@ -113,14 +173,6 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
         title: '数量',
         dataIndex: 'balance_amount',
         key: 'balance_amount',
-      }, {
-        title: '单价',
-        dataIndex: 'balance_unit_fee',
-        key: 'balance_unit_fee',
-      }, {
-        title: '金额',
-        dataIndex: 'balance_fee',
-        key: 'balance_fee',
       }],
     }, {
       title: '操作',
@@ -141,7 +193,7 @@ const List = ({ onDeleteItem, onEditItem, isMotion, location, ...tableProps }) =
         className={styles.table}
         {...tableProps}
         bordered = {true}
-        scroll={{ x: '130%' }}
+        scroll={{ x: '200%' }}
         size="middle"
         columns={columns}
       />
