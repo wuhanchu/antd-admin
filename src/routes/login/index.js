@@ -65,8 +65,8 @@ const Login = ({
             allowClear = {true}
           >
             <Option value="测试公司">测试公司</Option>
-            <Option value="测试公司1">测试公司1</Option>
-
+            <Option value="福建中奥嘉信息有限公司">福建中奥嘉信息有限公司</Option>
+            <Option value="厦门超创信息科技有限公司">厦门超创信息科技有限公司</Option>
           </Select>)}
         </FormItem>
         <Row>
