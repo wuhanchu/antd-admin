@@ -74,7 +74,10 @@ const modal = ({
 
 
       ['in_date', 'in_auth_date', 'sale_date', 'real_date', 'in_real_date', 'in_tax_date', 'sale_real_date', 'balance_date', 'balance_buy_date'].forEach((item) => {
-        if (data[item]) data[item] = data[item].format('YYYY-MM-DD')
+        if (data[item])
+          data[item] = data[item].format('YYYY-MM-DD')
+        else
+          delete data[item]
       })
 
       onOk(data)
