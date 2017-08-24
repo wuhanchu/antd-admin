@@ -60,12 +60,12 @@ const fetch = (options) => {
   }
 
   // 增加后台分页数据
-  if (data.pageSize) {
-    data.limit = data.pageSize
+  if (cloneData.pageSize) {
+    cloneData.limit = cloneData.pageSize
   }
 
-  if (data.page) {
-    data.offset = (data.page - 1) * data.limit
+  if (cloneData.page) {
+    cloneData.offset = (cloneData.page - 1) * cloneData.limit
   }
 
   // 增加access_token
