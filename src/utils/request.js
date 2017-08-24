@@ -59,6 +59,15 @@ const fetch = (options) => {
     data = null
   }
 
+  // 增加后台分页数据
+  if (data.pageSize) {
+    data.limit = data.pageSize
+  }
+
+  if (data.page) {
+    data.offset = (data.page - 1) * data.limit
+  }
+
   // 增加access_token
   let token = sessionStorage.getItem('token')
   if (token) {

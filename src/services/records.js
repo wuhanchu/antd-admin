@@ -7,15 +7,7 @@ export async function query (params) {
   let searchParam = {}
   Object.assign(searchParam, params)
 
-  if (searchParam.pageSize) {
-    searchParam.limit = searchParam.pageSize
-    delete searchParam.pageSize
-  }
 
-  if (searchParam.page) {
-    searchParam.offset = (searchParam.page - 1) * searchParam.limit
-    delete searchParam.page
-  }
 
   return request({
     url: records,
