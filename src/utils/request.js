@@ -59,6 +59,13 @@ const fetch = (options) => {
     data = null
   }
 
+  if (cloneData.pageSize) {
+    cloneData.limit = cloneData.pageSize
+  }
+  if (cloneData.page) {
+    cloneData.offset = (cloneData.page - 1) * cloneData.limit
+  }
+
   // 增加access_token
   let token = sessionStorage.getItem('token')
   if (token) {
