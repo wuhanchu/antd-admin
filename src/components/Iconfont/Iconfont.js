@@ -1,21 +1,24 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import './iconfont.less'
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import "./iconfont.less";
 
-const Iconfont = ({ type, colorful }) => {
-  if (colorful) {
-    return (<span
-      dangerouslySetInnerHTML={{
-        __html: `<svg class="colorful-icon" aria-hidden="true"><use xlink:href="#${type.startsWith('#') ? type.replace(/#/, '') : type}"></use></svg>`,
-      }}
-    />)
-  }
-  return <i className={`antdadmin icon-${type}`} />
-}
+const Iconfont = ({ type, colorful = false, className }) => {
+    if (colorful) {
+        return (
+            <svg className={classnames("colorful-icon", className)} aria-hidden="true">
+                <use xlinkHref={`#${type.startsWith("#") ? type.replace(/#/, "") : type}`} />
+            </svg>
+        );
+    }
+
+    return <i className={classnames("antdadmin", [`icon-${type}`], className)} />;
+};
 
 Iconfont.propTypes = {
-  type: PropTypes.string,
-  colorful: PropTypes.bool,
-}
+    type: PropTypes.string.isRequired,
+    colorful: PropTypes.bool,
+    className: PropTypes.string,
+};
 
-export default Iconfont
+export default Iconfont;
