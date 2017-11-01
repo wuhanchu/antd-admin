@@ -3,7 +3,6 @@ const APIV2 = "/api/v2";
 
 const ClientOAuth2 = require("client-oauth2");
 
-
 module.exports = {
     name: "AntD Admin",
     prefix: "antdAdmin",
@@ -33,8 +32,6 @@ module.exports = {
         clientId: "documentation",
         accessTokenUri: "auth/oauth2/token",
         authorizationUri: "auth/oauth2/token?grant_type=refresh_token",
-
-        // todo edit scope
         scopes: "users:read users:write auth:read auth:write",
     }),
 };
